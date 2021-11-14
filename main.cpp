@@ -1,7 +1,6 @@
 #include "vector.h"
 #include "list.h"
 #include "RBtree.h"
-#include "map.h"
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
@@ -10,11 +9,9 @@ void vector_test();
 void list_test();
 void RBtree_test1();
 void RBtree_test2();
-void map_test();
 
 int main(){
-    //RBtree_test1();
-    map_test();
+    RBtree_test2();
 }
 
 void vector_test(){
@@ -237,46 +234,4 @@ void RBtree_test2(){
     for(int i=0;i<100000;++i)
         delete temp[i];
 
-}
-
-void map_test(){
-    RBtree_node<int, int> temp[10];
-    map<int, int> m;
-    for(int i=1;i<5;++i){
-        temp[i].key = i;
-        temp[i].value = i;
-        m.insert(temp[i]);
-    }
-    for(int i=5;i<=100000;++i)
-        m[i]++;
-//    for(int i=100000;i>=1;i--)
-//		m.erase(i);
-    map<int, int>::iterator tmp;
-    for(auto it=--m.end();it!=m.begin();){
-        tmp = it;
-        --it;//注意每次删除前需让迭代器指向下一个节点，因为删除之后迭代器会失效
-        std::cout<<(*tmp).key<<" "<<(*tmp).value<<std::endl;
-        m.erase((*tmp).key);
-    }
-
-//    srand((int)time(0));
-//    map<int, int> m;
-//    RBtree_node<int, int>* temp[100000];
-//    int record[100000];
-//    for(int i=0;i<100000;++i){
-//        record[i] = rand()%10000;
-//        temp[i] = new RBtree_node<int, int>(record[i], i);
-//        m.insert(*temp[i]);
-//    }
-//    map<int, int>::iterator tmp;
-//    for(auto it=--m.end();it!=m.begin();){
-//        tmp = it;
-//        --it;//注意每次删除前需让迭代器指向下一个节点，因为删除之后迭代器会失效
-//        std::cout<<(*tmp).key<<" "<<(*tmp).value<<std::endl;
-//        m.erase((*tmp).key);
-//    }
-////    for(int i=0;i<100000;++i)
-////        m.erase(record[i]);
-//    for(int i=0;i<100000;++i)
-//        delete temp[i];
 }
